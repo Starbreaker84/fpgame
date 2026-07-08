@@ -3,10 +3,7 @@ import kotlin.system.exitProcess
 object Game {
 
     fun initializeGame(boardSize: Int = 8): BoardState {
-        return BoardState.builder()
-            .board(Board(boardSize))
-            .score(0)
-            .build()
+        return BoardState(Board(boardSize), 0)
             .fillEmptySpaces()
             .processCascade()
     }

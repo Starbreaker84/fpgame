@@ -29,9 +29,9 @@ private fun markCellsForRemoval(
     val newCells = board.cells.clone()
 
     for (match in matches) {
-        for (i in matches.indices) {
-            val row = if (match.direction == MatchDirection.HORIZONTAL) match.row else match.row + 1
-            val column = if (match.direction == MatchDirection.HORIZONTAL) match.column + 1 else match.column
+        for (i in 0 until match.length) {
+            val row = if (match.direction == MatchDirection.HORIZONTAL) match.row else match.row + i
+            val column = if (match.direction == MatchDirection.HORIZONTAL) match.column + i else match.column
 
             newCells[row][column] = Element.EMPTY
         }

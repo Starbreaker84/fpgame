@@ -6,7 +6,8 @@ tailrec fun BoardState.processCascade(
         return this
     }
 
-    return removeMatches(this, matches)
+    return this
+            .removeMatches(matches)
             .fillEmptySpaces()
             .processCascade()
 }

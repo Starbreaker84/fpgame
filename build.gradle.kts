@@ -6,12 +6,16 @@ plugins {
 group = "org.ruslan.omalaev"
 version = "1.0-SNAPSHOT"
 
+repositories {
+    mavenCentral()
+}
+
 application {
     mainClass.set("ProgramKt")
 }
 
-repositories {
-    mavenCentral()
+tasks.named<JavaExec>("run") {
+    standardInput = System.`in`
 }
 
 dependencies {

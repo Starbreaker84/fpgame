@@ -1,13 +1,10 @@
 tailrec fun BoardState.processCascade(
 ): BoardState {
-    val matches = findMatches(this.board)
-
-    if (matches.isEmpty()) {
-        return this
-    }
-
-    return this
-            .removeMatches(matches)
-            .fillEmptySpaces()
-            .processCascade()
+    val matches = this.board.findMatches()
+    return if (matches.isEmpty())
+                this
+           else
+                this.removeMatches(matches)
+                    .fillEmptySpaces()
+                    .processCascade()
 }

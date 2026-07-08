@@ -1,20 +1,19 @@
 private const val SCORE_MULTIPLIER = 10
 
-fun removeMatches(
-    currentState: BoardState,
+fun BoardState.removeMatches(
     matches: List<Match>
 ): BoardState {
-    if (matches.isEmpty()) return currentState
+    if (matches.isEmpty()) return this
 
     // Шаг 1: Помечаем ячейки для удаления
-    val markedCells = markCellsForRemoval(currentState.board, matches)
+    val markedCells = markCellsForRemoval(this.board, matches)
 
     // Шаг 2: Применяем гравитацию
-    val gravityAppliedCells = applyGravity(markedCells, currentState.board.size)
+    val gravityAppliedCells = applyGravity(markedCells, this.board.size)
 
     // Шаг 3: Подсчитываем очки
     val removedCount = matches.sumOf { it.length }
-    val newScore = currentState.score + calculateScore(removedCount)
+    val newScore = this.score + calculateScore(removedCount)
 
     // Возращаем НОВОЕ состояние
     return BoardState(

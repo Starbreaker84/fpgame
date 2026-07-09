@@ -4,7 +4,8 @@ tailrec fun BoardState.processCascade(
     return if (matches.isEmpty())
                 this
            else
-                this.removeMatches(matches)
-                    .fillEmptySpaces()
-                    .processCascade()
+               this.pipeline(
+                   step{ bs -> bs.removeMatches(matches) },
+                   step{ bs -> bs.fillEmptySpaces() },
+               ).processCascade()
 }
